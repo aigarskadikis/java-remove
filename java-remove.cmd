@@ -21,7 +21,7 @@ rem work only with keys which have DisplayName
 reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /v DisplayName > nul 2>&1
 if !errorlevel!==0 (
 
-rem if the uninstall key has "Java" inside then remeber the uninstall key 
+rem if the uninstall key has "Java" inside then remember the uninstall key 
 reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /v DisplayName | find "Java" > nul 2>&1
 if !errorlevel!==0 (
 
@@ -31,7 +31,7 @@ echo %%a;
 rem show which exact Java version is under this key
 reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /v DisplayName | find "Java"
 
-rem push the kuninstall key into the file
+rem delete uninstall key
 if "%1"=="destroy" reg delete "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /f
 echo.
 )
@@ -85,7 +85,7 @@ echo %%a;
 rem show which exact Java version is under this key
 reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /v DisplayName | find "Java"
 
-rem telete the key
+rem delete the key
 if "%1"=="destroy" reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\%%a" /f
 echo.
 )
